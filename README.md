@@ -129,6 +129,6 @@ To further improve this model, the following can be done:
 
 1. Since the constituents are not independent of all SGX listed stocks, it would be wise to include **all** SGX listed stocks into this model.
 2. A longer timeframe of closing prices could be considered.
-3. Other forms of measurement beyond average returns and volatiity can be considered.
+3. Other forms of measurement beyond average returns and volatiity can be considered. For example, CAPM, PE ratios or alphas.
 
-Feedback for this project is greatly appreciated!
+Any feedback would be appreciated!
