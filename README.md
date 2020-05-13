@@ -101,7 +101,7 @@ plt.xlabel('k')
 plt.ylabel('Sum of squared errors')
 ```
 
-![Results of elbow method](images/Number of centroids.png)
+![Results of elbow method](images/elbow.png)
 
 From the graph above, the reduction in SSE tapers off at around *k* = 10, so we will use that for our number of clusters that we want to specify. This means that out of the 30 constituents of the STI, the k-means algorithm will divide them into 10 groups. Note that it is not necessary for all groups to share the same amount of constituents.
 
