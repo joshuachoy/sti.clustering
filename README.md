@@ -103,7 +103,7 @@ plt.ylabel('Sum of squared errors')
 
 ![Results of elbow method](images/Number of centroids.png)
 
-From the graph above, the reduction in SSE tapers off at around *k* = 10, so we will use that for our number of clusters that we want to specify. This means that out of the 30 constituents of the STI, the k-means algorithm will divide them into 10 groups, with 3 companies in each.
+From the graph above, the reduction in SSE tapers off at around *k* = 10, so we will use that for our number of clusters that we want to specify. This means that out of the 30 constituents of the STI, the k-means algorithm will divide them into 10 groups. Note that it is not necessary for all groups to share the same amount of constituents.
 
 ```python
 #Reduction in SSE tapers off at around 10, which will be our number of centroids
@@ -122,7 +122,7 @@ result = pd.DataFrame({'Company':list(norm_df.index),'Labels':labels}).sort_valu
 ```
 ![Result](images/results.png)
 
-The results above show the 10 different groups that split the STI constituents.
+The results above show the 10 different groups that split the STI constituents. Each label indicates the group that a particular company belongs to. Interestingly, Mapletree Logistics Trust,Jardine Strategic Holdings Ltd and Singapore Airlines are the sole constituents in their particular group. 
 
 ### Further improvements
 To further improve this model, the following can be done:
