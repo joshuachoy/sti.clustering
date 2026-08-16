@@ -1,4 +1,60 @@
 # STI Constituents Clustering
+
+Clustering of Straits Times Index (STI) constituents using k-means, based on realized return and volatility.
+
+This repo has two analyses:
+
+| Notebook | Role |
+|---|---|
+| [`STI Clustering.ipynb`](STI%20Clustering.ipynb) | **Historical** COVID-era case study (Q4/2019–Q1/2020). Left as originally written. |
+| [`STI_Clustering_Current.ipynb`](STI_Clustering_Current.ipynb) | **Current** STI membership, ~3-year window ending mid-2026. Prefer this for anything “today”. |
+
+## Quick start (current notebook)
+
+```bash
+pip install -r requirements.txt
+jupyter notebook STI_Clustering_Current.ipynb
+```
+
+Prices are cached in `data/sti_prices_current.parquet` after the first download. Set `REFRESH = True` in the notebook to pull fresh Yahoo Finance data.
+
+Current inputs/outputs:
+
+- `data/sti_current.csv` — 30 STI tickers, names, sectors
+- `data/sti_clusters_current.csv` — labeled cluster assignments
+- `images/current/` — return-correlation heatmap, k-selection curves, return–vol scatter
+
+### Method (current)
+
+1. Download ~3 years of adjusted closes via `yfinance`
+2. Build features: annualized mean return and annualized volatility from daily returns
+3. Standardize with `StandardScaler`
+4. Choose `k` with elbow **and** silhouette (`k = 2…8`); fit `KMeans` with a fixed `random_state`
+5. Inspect assignments and a return–vol scatter
+
+Compared with the 2020 notebook: return (not price-level) correlations, standardization instead of min–max, silhouette-guided `k`, and reproducible seeds.
+
+### Latest current run (window 2023-08-16 → 2026-08-16)
+
+Silhouette selected **k = 4**:
+
+| Cluster | Size | Profile (approx.) |
+|---|---|---|
+| 0 | 18 | Lower/moderate return, moderate vol — many REITs and defensive names |
+| 1 | 7 | Higher return, moderate vol — e.g. DBS, OCBC, ST Engineering, Singtel, SGX, SATS, Keppel |
+| 2 | 1 | High-vol outlier — Seatrium |
+| 3 | 4 | Higher return with elevated vol — e.g. Yangzijiang, Hongkong Land, DFI Retail, Jardine Matheson |
+
+![Return–vol clusters](images/current/clusters_scatter.png)
+
+![k selection](images/current/k_selection.png)
+
+This is exploratory analysis, not investment advice.
+
+---
+
+## Historical write-up (2020 notebook)
+
 Clustering of STI constituents using k-means
 
 ### Cluster Anaylsis
